@@ -49,8 +49,6 @@ $(function() {
          });
     });
 
-
-    /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -72,7 +70,7 @@ $(function() {
           expect($('body')).toHaveClass("menu-hidden");
         });
     });
-    /* TODO: Write a new test suite named "Initial Entries" */
+
     describe('Initial Entries', function() {
       /* TODO: Write a test that ensures when the loadFeed
        * function is called and completes its work, there is at least
@@ -86,12 +84,11 @@ $(function() {
         });
       });
 
-      it('it loads feeds', function(done) {
-        expect($('.feed')).not.toBeEmpty();
-        done();
+      it('it loads feeds', function() {
+        expect($('.feed .entry-link')).not.toBeEmpty();
       });
     });
-    /* TODO: Write a new test suite named "New Feed Selection" */
+
     describe('New Feed Selection', function() {
       /* TODO: Write a test that ensures when a new feed is loaded
        * by the loadFeed function that the content actually changes.
@@ -101,6 +98,9 @@ $(function() {
       beforeEach(function(done) {
         loadFeed(0, function() {
           initialFeed = $('.feed')[0].innerHTML;
+          loadFeed(1, function(done) {
+            done();
+          });
         });
 
         loadFeed(1, function() {
