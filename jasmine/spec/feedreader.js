@@ -102,10 +102,6 @@ $(function() {
             done();
           });
         });
-
-        loadFeed(1, function() {
-          done();
-        });
       });
 
       it('should have different content', function(){
