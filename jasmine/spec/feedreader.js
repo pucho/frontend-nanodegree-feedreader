@@ -73,18 +73,45 @@ $(function() {
         });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial Entries', function() {
+      /* TODO: Write a test that ensures when the loadFeed
+       * function is called and completes its work, there is at least
+       * a single .entry element within the .feed container.
+       * Remember, loadFeed() is asynchronous so this test will require
+       * the use of Jasmine's beforeEach and asynchronous done() function.
+       */
+      beforeEach(function(done) {
+        loadFeed(0, function() {
+          done();
+        });
+      });
 
-        /* TODO: Write a test that ensures when the loadFeed
-         * function is called and completes its work, there is at least
-         * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
-         */
+      it('it loads feeds', function(done) {
+        expect($('.feed')).not.toBeEmpty();
+        done();
+      });
+    });
+    /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
+      /* TODO: Write a test that ensures when a new feed is loaded
+       * by the loadFeed function that the content actually changes.
+       * Remember, loadFeed() is asynchronous.
+       */
+      let initialFeed;
+      beforeEach(function(done) {
+        loadFeed(0, function() {
+          initialFeed = $('.feed')[0].innerHTML;
+        });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+        loadFeed(1, function() {
+          done();
+        });
+      });
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+      it('should have different content', function(){
+        secondFeed = $('.feed')[0].innerHTML;
+        expect(initialFeed).not.toBe(secondFeed);
+      });
+    });
+
 }());
